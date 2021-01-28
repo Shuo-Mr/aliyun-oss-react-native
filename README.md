@@ -85,6 +85,14 @@ project(':react-native-react-sdk').projectDir = new File(rootProject.projectDir,
 ```
 
 2. Add the compile line to the dependencies in `android/app/build.gradle`:
+ Android studio > 3
+ Compile above 3.0 is obsolete
+```gradle
+dependencies {
+  implementation project(':aliyun-oss-react-native')
+}
+``` 
+ Android studio < 3
 ```gradle
 dependencies {
   compile project(':aliyun-oss-react-native')
