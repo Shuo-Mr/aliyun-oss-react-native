@@ -85,7 +85,8 @@ public class AliyunUploadManager {
             cursor.moveToFirst();
             sourceFile = cursor.getString(column_index);
         } catch (Exception e) {
-            // error 
+            //  issue: An error path will be returned due to a local cache failure
+            //  There is no research on how to solve the problem
             // sourceFile = FileUtils.getFilePathFromURI(context.getCurrentActivity(), selectedVideoUri);
         } finally {
             if (cursor != null) {
@@ -102,7 +103,6 @@ public class AliyunUploadManager {
         put.setProgressCallback(new OSSProgressCallback<PutObjectRequest>() {
             @Override
             public void onProgress(PutObjectRequest request, long currentSize, long totalSize) {
-                Log.d("PutObject", "currentSize: " + currentSize + " totalSize: " + totalSize);
                 String str_currentSize = Long.toString(currentSize);
                 String str_totalSize = Long.toString(totalSize);
                 WritableMap onProgressValueData = Arguments.createMap();
@@ -116,9 +116,6 @@ public class AliyunUploadManager {
         OSSAsyncTask task = mOSS.asyncPutObject(put, new OSSCompletedCallback<PutObjectRequest, PutObjectResult>() {
             @Override
             public void onSuccess(PutObjectRequest request, PutObjectResult result) {
-                Log.d("PutObject", "UploadSuccess");
-                Log.d("ETag", result.getETag());
-                Log.d("RequestId", result.getRequestId());
                 promise.resolve("UploadSuccess");
             }
 
@@ -173,7 +170,6 @@ public class AliyunUploadManager {
         append.setProgressCallback(new OSSProgressCallback<AppendObjectRequest>() {
             @Override
             public void onProgress(AppendObjectRequest request, long currentSize, long totalSize) {
-                Log.d("AppendObject", "currentSize: " + currentSize + " totalSize: " + totalSize);
                 // add event
                 String str_currentSize = Long.toString(currentSize);
                 String str_totalSize = Long.toString(totalSize);
