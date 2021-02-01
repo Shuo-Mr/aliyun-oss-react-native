@@ -16,7 +16,7 @@
 - IOS系统版本: 8.0及以上
 - 必须注册有Aliyun.com用户账户,并开通OSS服务。
 - Node版本: 8.0及以上
-- React Native版本：0.44.0及以上
+- React Native版本：0.57.0及以上
 
 ## 内容
 
@@ -83,11 +83,18 @@ pod 'aliyun-oss-react-native', :path => '../node_modules/aliyun-oss-react-native
     project(':aliyun-oss-react-native').projectDir = new File(rootProject.projectDir, '../node_modules/aliyun-oss-react-native/android')
     ```
 2. `build.gradle`
-    ```gradle
-    dependencies {
-        compile project(':aliyun-oss-react-native')
-    }
-    ```
+ Android studio > 3
+ Compile above 3.0 is obsolete
+  ```gradle
+  dependencies {
+    implementation project(':aliyun-oss-react-native')
+  }
+  ``` 
+  Android studio < 3
+  ```gradle
+  dependencies {
+    compile project(':aliyun-oss-react-native')
+  }
 
 3. `MainApplication.java`
     ```java

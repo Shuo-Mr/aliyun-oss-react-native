@@ -16,7 +16,7 @@ This document mainly describes how to install and use the OSS React Native SDK. 
 - IOS ***8.0*** or above
 - You must have registered an Alibaba Cloud account with the OSS activated.
 - Node ***8.0*** or above
-- React Native ***0.44.0*** or above
+- React Native ***0.57.0*** or above
 
 ## Table of Contents
 
@@ -85,19 +85,20 @@ project(':react-native-react-sdk').projectDir = new File(rootProject.projectDir,
 ```
 
 2. Add the compile line to the dependencies in `android/app/build.gradle`:
+
  Android studio > 3
  Compile above 3.0 is obsolete
-```gradle
-dependencies {
-  implementation project(':aliyun-oss-react-native')
-}
-``` 
- Android studio < 3
-```gradle
-dependencies {
-  compile project(':aliyun-oss-react-native')
-}
-```
+  ```gradle
+  dependencies {
+    implementation project(':aliyun-oss-react-native')
+  }
+  ``` 
+  Android studio < 3
+  ```gradle
+  dependencies {
+    compile project(':aliyun-oss-react-native')
+  }
+  ```
 3. Add the required permissions in `AndroidManifest.xml`:
 
   ```xml
