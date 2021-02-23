@@ -73,7 +73,7 @@ public class AliyunUploadManager {
     public void asyncUpload(final ReactContext context, String bucketName, String ossFile, String sourceFile, ReadableMap options, final Promise promise) {
         // Content to file:// start
         Uri selectedVideoUri = Uri.parse(sourceFile);
-
+        final String uploadKey = ossFile;
         // 1. content uri -> file path
         // 2. inputstream -> temp file path
         Cursor cursor = null;
@@ -108,6 +108,7 @@ public class AliyunUploadManager {
                 WritableMap onProgressValueData = Arguments.createMap();
                 onProgressValueData.putString("currentSize", str_currentSize);
                 onProgressValueData.putString("totalSize", str_totalSize);
+                onProgressValueData.putString("uploadKey", uploadKey);
                 context.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
                         .emit("uploadProgress", onProgressValueData);
             }
